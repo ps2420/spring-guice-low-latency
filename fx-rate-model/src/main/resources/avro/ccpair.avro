@@ -1,0 +1,22 @@
+{"namespace": "com.dbs.sg.fx.rate.model.avro",
+  "type": "record",
+  "name": "FxRateModelA",
+  "doc" : "Represents cross currency feeds from different sources",
+  "fields": [
+    {"name": "uuid", "type": "string", "doc" : "unique id for record"},
+    
+    {"name": "sourceSystem", "type": "string", "doc" : "Represents Source System"},
+    {"name": "takeCompID",   "type": "string", "doc" : "Unique system Id"},
+    {"name": "symbol", "type": "string", "doc" : "cross currency pair"},
+    {"name": "tenor",  "type": "string", "doc" : "Tenor of Cross currency pair SPOT"},
+    
+    {"name": "bid",     "type": "double"},
+    {"name": "ask",     "type": "double"},
+     
+    {"name": "bidSize", "type": "double", "default": -1},
+    {"name": "askSize", "type": "double", "default": -1},
+    
+    {"name": "tradeable", "type": "boolean", "default" : "true"},
+    {"name": "timestamp", "type": "string"}
+  ]
+}

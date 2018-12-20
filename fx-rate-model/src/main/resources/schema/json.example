@@ -1,0 +1,12 @@
+{
+  "timestamp": "1537509745254",
+  "sourceSystem": "FLEX",
+  "takeCompID": "DBS_FEED2",
+  "symbol": "EUR/AUD",
+  "tenor": "SPOT",
+  "bid": null,
+  "bidSize": null,
+  "ask": "1.61529",
+  "askSize": "1000000.0",
+  "tradeable": true
+}

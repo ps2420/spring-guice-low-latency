@@ -1,0 +1,53 @@
+{
+  "$id": "https://dbs.com.sg.market.neutral.model.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FX Spot Market Neutral Model",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "description": "unique id for record"
+    },
+    "timestamp": {
+      "type": "timestamp",
+      "description": "timestamp for fx cross currency"
+    },
+    "sourceSystem": {
+      "type": "string",
+      "description": "Source system for ex: FLEX"
+    },
+    "takeCompID": {
+      "type": "string",
+      "description": "The person's last name."
+    },
+    "symbol": {
+      "type": "string",
+      "description": "Cross Currency Pair For ex: EUR/AUD"
+    },
+    "tenor": {
+      "type": "string",
+      "description": "Tenor for FX currency for ex: SPOT"
+    },
+    "bid": {
+      "type": "number",
+      "description": "bid for cross currency pair for ex: 1.2"
+    },
+    "bidSize": {
+      "type": "number",
+      "description": "bid size for cross currency"
+    },
+    "ask": {
+      "type": "number",
+      "description": "ask for cross currency 1.61529"
+    },
+    "askSize": {
+      "type": "number",
+      "description": "ask size for cross currency for ex: 100000.0"
+    },
+    "tradeable": {
+      "type": "boolean",
+      "description": "boolean value for ex: true/false"
+    }
+  }
+}
+

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.dbs.sg.fx.rate</groupId>
+	<artifactId>fx-rate-model</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>fx-rate-model</name>
+	<description>FX rate database consumer</description>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+		<elasticsearch.version>6.3.0</elasticsearch.version>
+		<spring.boot.admin>2.0.1</spring.boot.admin>
+		<kafka.version>2.0.0</kafka.version>
+		<commons.io>2.6</commons.io>
+		<powermock.easymock>1.7.4</powermock.easymock>
+		<mariadb.version>2.3.0</mariadb.version>
+		<spring.version>4.3.10.RELEASE</spring.version>
+		<reactor.core>3.2.0.RELEASE</reactor.core>
+
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+
+		<mariadb.version>2.3.0</mariadb.version>
+		<reactor.core>3.2.0.RELEASE</reactor.core>
+		<guice.version>4.1.0</guice.version>
+		<avro.version>1.8.2</avro.version>
+		<kafka.avro.serializer>3.2.1</kafka.avro.serializer>
+	</properties>
+
+
+	<scm>
+		<connection>scm:git:git@github.com:AmarisAI/market-neutral-model.git</connection>
+		<url>scm:git:git@github.com:AmarisAI/market-neutral-model.git</url>
+		<developerConnection>scm:git:git@github.com:AmarisAI/market-neutral-model.git</developerConnection>
+	</scm>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro</artifactId>
+			<version>${avro.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-maven-plugin</artifactId>
+			<version>${avro.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-compiler</artifactId>
+			<version>${avro.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.avro</groupId>
+			<artifactId>avro-ipc</artifactId>
+			<version>${avro.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.sh</exclude>
+					<exclude>src/test/resources</exclude>
+					<exclude>src/test/java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.jsonschema2pojo</groupId> <artifactId>jsonschema2pojo-maven-plugin</artifactId> 
+				<version>0.4.34</version> <configuration> <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory> 
+				<targetPackage>com.dbs.sg.fx.rate.model.json</targetPackage> <useCommonsLang3>false</useCommonsLang3> 
+				</configuration> <executions> <execution> <goals> <goal>generate</goal> </goals> 
+				</execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>${avro.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/resources/avro/</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+							<testSourceDirectory>${project.basedir}/src/test/java/avro/</testSourceDirectory>
+							<testOutputDirectory>${project.basedir}/src/test/java/</testOutputDirectory>
+							<fieldVisibility>PRIVATE</fieldVisibility>
+							<includes>
+								<include>**/*.avro</include>
+							</includes>
+							<testIncludes>
+								<testInclude>**/*.test</testInclude>
+							</testIncludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+
